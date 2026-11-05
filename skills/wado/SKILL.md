@@ -13,4 +13,4 @@ Workspace: `~/Claude-Workspace/`
 3. In the newest logbook entry, change each moved file's path and mark it `kept`.
 4. Finish when every item sits under `kept/` and `grep -r "<old path>" logbook/` returns nothing. Print the new paths.
 
-Flourish: "Wado stays with me. Kept."
+Close with one line: "⚔️ Wado stays with me. Kept."

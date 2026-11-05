@@ -23,4 +23,4 @@ Every file stays at or under 120 lines. Domain and topic names are kebab-case (`
 5. Split each `OVER` file at a heading boundary into two files, each with its own `summary:`. Fill each `MISSING` item. Rerun step 4.
 6. Finish when reindex prints no `OVER` or `MISSING` lines. Print the paths you wrote.
 
-Flourish: "Trained. The dojo remembers."
+Close with one line: "⚔️ Trained. The dojo remembers."
