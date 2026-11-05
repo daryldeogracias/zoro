@@ -45,8 +45,9 @@ def main():
     # A long prompt with a build verb is probably a real task: nudge towards planning first.
     if len(prompt) >= 80 and BUILD.search(prompt) and not prompt.lstrip().startswith("/"):
         print(
-            "Zoro: this reads like a build or change request. Run the kata skill (plan first) "
-            "unless it is a one-line change. If the goal, scope or done-condition is unclear, ask first."
+            "Zoro: this reads like a build or change request. If no spec exists yet, suggest the user "
+            "type /kata once, at the start (never run it yourself). If the goal, scope or "
+            "done-condition is unclear, ask first."
         )
     if not prompt or not os.path.isdir(dojo):
         return

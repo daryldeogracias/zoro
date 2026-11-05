@@ -11,7 +11,7 @@ Everything lives in `~/Desktop/Zoro-Files/`.
 | `/santoryu` | Three Sword Style | Digests a docx/pdf/pptx/xlsx once. Later chats read a ~150-word summary instead of the file. Runs automatically when a document is attached. |
 | `/wado` | Wado Ichimonji, never given up | Moves scratch files to `kept/` for good. |
 | `/train` | Trains in the dojo | Saves important knowledge into `dojo/<domain>/`, with a table of contents per domain and a 120-line cap per file. Future chats see the domain list at start, and every prompt is matched against the domains so Claude is told which README to read. |
-| `/kata` | A practised sequence | Asks if the request is unclear, enters plan mode, and on approval writes `specs/<name>/spec.md` plus small ticket files. Each ticket has a checklist, so a fresh chat can take one ticket at a time. |
+| `/kata` | A practised sequence | Runs once, at the start, on Opus 5.5, and only when you type it. Asks if the request is unclear, enters plan mode, and on approval writes `specs/<name>/spec.md` plus small ticket files. Each ticket has a checklist, so a fresh chat can take one ticket at a time. |
 | `/tick` | Ticking things off | Marks verified checklist items done and rebuilds the spec's progress table. |
 | `/oath` | A decision sworn once | Records a decision as an ADR in `dojo/<domain>/adr-NNN-<title>.md`. `/nap` offers it automatically for decisions that weighed options. |
 | `/oni-giri` | Cuts it down | Moves scratch older than 14 days to the Trash. Asks first. |

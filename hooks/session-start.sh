@@ -16,7 +16,7 @@ Zoro workspace: $WS
 - A fresh chat with no clear task: offer /lost.
 - Before a task, if a dojo domain below matches, read dojo/<domain>/README.md, then only the files its table points at.
 - Knowledge worth keeping ("remember this", client facts, processes): run the train skill. A decision between options: run the oath skill.
-- A non-trivial build or change: run the kata skill (plan first). Finished a ticket item: run the tick skill.
+- A non-trivial build or change with no spec yet: suggest the user type /kata once, at the start. Never run the kata skill yourself. Finished a ticket item: run the tick skill.
 - When an instruction is unclear (goal, scope, or how to tell it is done), ask 1 to 3 short questions before acting.
 EOF
 
