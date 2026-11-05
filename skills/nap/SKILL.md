@@ -8,10 +8,12 @@ Zoro naps anywhere. Log the voyage first, then the user can leave this chat safe
 
 Workspace: the path in the session start notice (default `~/Desktop/Zoro-Files/`)
 
-1. Get the timestamp with `date +%Y-%m-%d-%H%M`. Write `logbook/<timestamp>-<slug>.md` using the template below, under 40 lines.
-2. List the files you created this chat. Move any that sit outside `scratch/` into `scratch/<date>-<slug>/`.
-3. Ask: "Any of these worth keeping?" Hand the answer to the `wado` skill.
-4. Finish when the entry exists and you have printed its full path, then say: "😴 Napping. Start a fresh chat any time and run /lost."
+1. Scan the chat for decisions. Each one where two or more options were weighed, or the user chose, goes to the `oath` skill as an ADR. Smaller decisions stay as one-line bullets.
+2. Get the timestamp with `date +%Y-%m-%d-%H%M`. Write `logbook/<timestamp>-<slug>.md` using the template below, under 40 lines. Link each ADR by its ID.
+3. When this chat touched a spec, run `python3 ../kata/scripts/specs.py status` from this skill's base directory and put its line under `## Checklist`.
+4. List the files you created this chat. Move any that sit outside `scratch/` into `scratch/<date>-<slug>/`.
+5. Ask: "Any of these worth keeping?" Hand the answer to the `wado` skill.
+6. Finish when the entry exists and you have printed its full path, then say: "😴 Napping. Start a fresh chat any time and run /lost."
 
 ## Template
 
@@ -26,7 +28,10 @@ status: open | done
 <2-4 lines>
 
 ## Decisions
-- <decision, and why in a few words>
+- <decision, and why in a few words> (ADR-NNN when recorded)
+
+## Checklist
+- specs/<slug>: <done>/<total> items, next <ticket>
 
 ## Open questions
 - <question>

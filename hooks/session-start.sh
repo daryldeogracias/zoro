@@ -15,8 +15,17 @@ Zoro workspace: $WS
 - Zoro always loses his bearings: after about 15 turns, or after reading 3+ large files, say once: "😵‍💫 Zoro: this chat's got long and I'm losing my bearings. Want me to /nap so you can start fresh with nothing lost?"
 - A fresh chat with no clear task: offer /lost.
 - Before a task, if a dojo domain below matches, read dojo/<domain>/README.md, then only the files its table points at.
-- Knowledge worth keeping ("remember this", decisions, client facts, processes): run the train skill.
+- Knowledge worth keeping ("remember this", client facts, processes): run the train skill. A decision between options: run the oath skill.
+- A non-trivial build or change: run the kata skill (plan first). Finished a ticket item: run the tick skill.
+- When an instruction is unclear (goal, scope, or how to tell it is done), ask 1 to 3 short questions before acting.
 EOF
+
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+open_specs=$(CLAUDE_WORKSPACE="$WS" python3 "$ROOT/skills/kata/scripts/specs.py" status 2>/dev/null | head -5)
+if [ -n "$open_specs" ]; then
+  echo "- Specs in progress:"
+  echo "$open_specs" | sed 's/^/    /'
+fi
 
 if [ -f "$WS/dojo/README.md" ]; then
   echo "- Dojo domains:"

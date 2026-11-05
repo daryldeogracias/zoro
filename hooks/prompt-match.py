@@ -15,6 +15,12 @@ them then there these they this those through under want what when where which w
 yours help the and for you are can how why who not but use get let our any all was has had its out""".split())
 
 
+BUILD = re.compile(
+    r"\b(build|add|create|implement|refactor|migrate|redesign|develop|integrate|set up|make me)\b",
+    re.I,
+)
+
+
 def words(text):
     out = set()
     for w in re.findall(r"[a-z0-9]+", text.lower()):
@@ -36,6 +42,12 @@ def main():
         return
     ws = os.environ.get("CLAUDE_WORKSPACE", os.path.expanduser("~/Desktop/Zoro-Files"))
     dojo = os.path.join(ws, "dojo")
+    # A long prompt with a build verb is probably a real task: nudge towards planning first.
+    if len(prompt) >= 80 and BUILD.search(prompt) and not prompt.lstrip().startswith("/"):
+        print(
+            "Zoro: this reads like a build or change request. Run the kata skill (plan first) "
+            "unless it is a one-line change. If the goal, scope or done-condition is unclear, ask first."
+        )
     if not prompt or not os.path.isdir(dojo):
         return
     pw = words(prompt)
