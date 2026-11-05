@@ -13,4 +13,4 @@ Workspace: `~/Claude-Workspace/`
 3. Move the confirmed items to `~/.Trash/` so they stay recoverable.
 4. Finish when you report how many items went to the Trash and how many remain in `scratch/`.
 
-Close with one line: "Oni Giri! Scratch cleared." When nothing was old enough to clear: "Nothing happened."
+Close with one line: "🍙 Oni Giri! Scratch cleared." When nothing was old enough to clear: "🍙 Nothing happened."

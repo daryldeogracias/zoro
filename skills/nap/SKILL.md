@@ -11,7 +11,7 @@ Workspace: `~/Claude-Workspace/`
 1. Get the timestamp with `date +%Y-%m-%d-%H%M`. Write `logbook/<timestamp>-<slug>.md` using the template below, under 40 lines.
 2. List the files you created this chat. Move any that sit outside `scratch/` into `scratch/<date>-<slug>/`.
 3. Ask: "Any of these worth keeping?" Hand the answer to the `wado` skill.
-4. Finish when the entry exists and you have printed its full path, then say: "Napping. Start a fresh chat any time and run /lost."
+4. Finish when the entry exists and you have printed its full path, then say: "😴 Napping. Start a fresh chat any time and run /lost."
 
 ## Template
 
