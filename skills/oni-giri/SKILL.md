@@ -6,9 +6,9 @@ model: sonnet
 
 Oni Giri cuts the scratch pile down to size. The logbook, `digests/` and `kept/` stay untouched.
 
-Workspace: `~/Desktop/Claude-Workspace/`
+Workspace: the path in the session start notice (default `~/Desktop/Zoro-Files/`)
 
-1. List `scratch/` entries older than 14 days (`find ~/Desktop/Claude-Workspace/scratch -mindepth 1 -maxdepth 1 -mtime +14`) with sizes. If the user asked for everything, list all of `scratch/`.
+1. List `scratch/` entries older than 14 days (`find <workspace>/scratch -mindepth 1 -maxdepth 1 -mtime +14`) with sizes. If the user asked for everything, list all of `scratch/`.
 2. Show the list and ask for a yes. Wait for it.
 3. Move the confirmed items to `~/.Trash/` so they stay recoverable.
 4. Finish when you report how many items went to the Trash and how many remain in `scratch/`.
