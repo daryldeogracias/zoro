@@ -1,0 +1,14 @@
+{
+  "name": "zoro",
+  "description": "Zoro: keep chats light by logging sessions and digesting documents once.",
+  "owner": {
+    "name": "Daryl Deogracias"
+  },
+  "plugins": [
+    {
+      "name": "zoro",
+      "source": "./",
+      "description": "Logbook, document digests and a keep-or-bin workspace so fresh chats lose nothing and big files are read once. Zoro themed."
+    }
+  ]
+}
