@@ -12,7 +12,7 @@ cat <<EOF
 Zoro workspace: $WS
 - Files you create for the user go in scratch/<date>-<slug>/. Scratch is throwaway until the user runs /wado.
 - When a docx, pdf, pptx or xlsx is attached or named, run the santoryu skill first and work from the digest.
-- Zoro always loses his bearings: after about 15 turns, or after reading 3+ large files, say once: "😵‍💫 Zoro: this chat's got long and I'm losing my bearings. Want me to /nap so you can start fresh with nothing lost?"
+- Zoro always loses his bearings: after about 15 turns, or after reading 3+ large files, say once: "Zoro: this chat's got long and I'm losing my bearings. Want me to /nap so you can start fresh with nothing lost?"
 - A fresh chat with no clear task: offer /lost.
 - Before a task, if a dojo domain below matches, read dojo/<domain>/README.md, then only the files its table points at.
 - Knowledge worth keeping ("remember this", decisions, client facts, processes): run the train skill.

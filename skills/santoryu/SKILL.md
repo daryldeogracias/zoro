@@ -16,4 +16,4 @@ Workspace: `~/Claude-Workspace/`
 
 The script handles docx, pptx, xlsx, pdf (needs `pdftotext`) and plain text. If `pdftotext` is missing, tell the user to run `brew install poppler`.
 
-Close with one line. After a first digest: "🗡️🗡️🗡️ Santoryu done. One cut, no need to read it again." When the status was `UNCHANGED`: "🗡️🗡️🗡️ Nothing happened. Already read it."
+Close with one line. After a first digest: "Santoryu done. One cut, no need to read it again." When the status was `UNCHANGED`: "Nothing happened. Already read it."
