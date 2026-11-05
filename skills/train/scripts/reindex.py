@@ -14,7 +14,7 @@ import os
 import re
 import sys
 
-WS = os.environ.get("CLAUDE_WORKSPACE", os.path.expanduser("~/Claude-Workspace"))
+WS = os.environ.get("CLAUDE_WORKSPACE", os.path.expanduser("~/Desktop/Claude-Workspace"))
 DOJO = os.path.join(WS, "dojo")
 LIMIT = 120
 START, END = "<!-- toc:start -->", "<!-- toc:end -->"

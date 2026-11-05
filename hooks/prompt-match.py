@@ -34,7 +34,7 @@ def main():
         prompt = json.load(sys.stdin).get("prompt", "")
     except Exception:
         return
-    ws = os.environ.get("CLAUDE_WORKSPACE", os.path.expanduser("~/Claude-Workspace"))
+    ws = os.environ.get("CLAUDE_WORKSPACE", os.path.expanduser("~/Desktop/Claude-Workspace"))
     dojo = os.path.join(ws, "dojo")
     if not prompt or not os.path.isdir(dojo):
         return

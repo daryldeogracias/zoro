@@ -6,7 +6,7 @@ model: sonnet
 
 Zoro naps anywhere. Log the voyage first, then the user can leave this chat safely.
 
-Workspace: `~/Claude-Workspace/`
+Workspace: `~/Desktop/Claude-Workspace/`
 
 1. Get the timestamp with `date +%Y-%m-%d-%H%M`. Write `logbook/<timestamp>-<slug>.md` using the template below, under 40 lines.
 2. List the files you created this chat. Move any that sit outside `scratch/` into `scratch/<date>-<slug>/`.

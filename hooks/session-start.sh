@@ -2,7 +2,7 @@
 # Zoro's orders, read at every sailing. Stdout becomes session context.
 # Keep this short: every line is paid for on every chat.
 
-WS="${CLAUDE_WORKSPACE:-$HOME/Claude-Workspace}"
+WS="${CLAUDE_WORKSPACE:-$HOME/Desktop/Claude-Workspace}"
 mkdir -p "$WS"/{logbook,digests,scratch,kept,dojo}
 
 recent=$(ls -1t "$WS/logbook" 2>/dev/null | head -5)

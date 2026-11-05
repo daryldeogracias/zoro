@@ -6,7 +6,7 @@ model: sonnet
 
 Zoro trains in the dojo every day. Knowledge worth keeping goes there, small and indexed, so any chat can find it without reading everything.
 
-Workspace: `~/Claude-Workspace/dojo/`
+Workspace: `~/Desktop/Claude-Workspace/dojo/`
 
 ```
 dojo/README.md                 table of domains

@@ -6,7 +6,7 @@ model: sonnet
 
 Three Sword Style: one clean cut turns a heavy document into a digest, and the original stays sheathed afterwards.
 
-Workspace: `~/Claude-Workspace/`
+Workspace: `~/Desktop/Claude-Workspace/`
 
 1. Run `python3 scripts/digest.py "<full path to file>"` from this skill's base directory. It prints a status (`UNCHANGED`, `NEW` or `UPDATED`), the digest path and its approximate token size.
 2. `UNCHANGED`: read only the `## Summary` block at the top of the digest.

@@ -15,7 +15,7 @@ import sys
 import zipfile
 import xml.etree.ElementTree as ET
 
-WS = os.environ.get("CLAUDE_WORKSPACE", os.path.expanduser("~/Claude-Workspace"))
+WS = os.environ.get("CLAUDE_WORKSPACE", os.path.expanduser("~/Desktop/Claude-Workspace"))
 PENDING = "<!-- summary pending -->"
 W = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
 A = "{http://schemas.openxmlformats.org/drawingml/2006/main}"

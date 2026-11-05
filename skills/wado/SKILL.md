@@ -6,7 +6,7 @@ model: sonnet
 
 Wado Ichimonji is the sword Zoro never gives up. Whatever the user keeps stays in `kept/`; everything else stays scratch.
 
-Workspace: `~/Claude-Workspace/`
+Workspace: `~/Desktop/Claude-Workspace/`
 
 1. Identify the items: the ones the user named, otherwise the newest `scratch/` folder.
 2. Move them to `kept/<topic>/`, choosing a topic folder name from the content (e.g. `gmv-campaign`).
