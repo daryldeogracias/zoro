@@ -16,10 +16,10 @@ import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "lib"))
 from workspace import WS  # noqa: E402
+from toc import replace_table  # noqa: E402
 
 DOJO = os.path.join(WS, "dojo")
 LIMIT = 120
-START, END = "<!-- toc:start -->", "<!-- toc:end -->"
 problems = []
 
 
@@ -49,13 +49,9 @@ def check_limit(path, text):
 
 def write_toc(readme, title, header, rows, default_desc):
     """Replace the block between markers, creating the README if absent."""
-    block = f"{START}\n{header}\n" + "\n".join(rows) + f"\n{END}"
+    block = f"{header}\n" + "\n".join(rows)
     if os.path.exists(readme):
-        text = read(readme)
-        if START in text and END in text:
-            text = re.sub(re.escape(START) + r".*?" + re.escape(END), lambda _: block, text, flags=re.S)
-        else:
-            text = text.rstrip() + "\n\n" + block + "\n"
+        text = replace_table(read(readme), block)
     else:
         text = f"---\ndescription: {default_desc}\n---\n\n# {title}\n\n{block}\n"
     with open(readme, "w", encoding="utf-8") as f:

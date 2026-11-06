@@ -21,10 +21,10 @@ import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "lib"))
 from workspace import WS, link_line  # noqa: E402
+from toc import replace_table  # noqa: E402
 
 SPECS = os.path.join(WS, "specs")
 LIMIT = 120
-START, END = "<!-- toc:start -->", "<!-- toc:end -->"
 BOX = re.compile(r"^(\s*- \[)([ xX])(\] .*)$")
 TICKET = re.compile(r"^t\d+.*\.md$")
 problems = []
@@ -108,16 +108,13 @@ def index():
             rows.append(f"| [{f[:-3]}]({f}) | {summary} | {mark} |")
         done, total, tdone, tcount = totals(slug)
         block = (
-            f"{START}\nProgress: {done}/{total} items · {tdone}/{tcount} tickets done\n\n"
-            "| File | What's in it | Done |\n|---|---|---|\n" + "\n".join(rows) + f"\n{END}"
+            f"Progress: {done}/{total} items · {tdone}/{tcount} tickets done\n\n"
+            "| File | What's in it | Done |\n|---|---|---|\n" + "\n".join(rows)
         )
         readme = os.path.join(d, "README.md")
         if os.path.exists(readme):
             text = read(readme)
-            if START in text and END in text:
-                text = re.sub(re.escape(START) + r".*?" + re.escape(END), lambda _: block, text, flags=re.S)
-            else:
-                text = text.rstrip() + "\n\n" + block + "\n"
+            text = replace_table(text, block)
         else:
             title = slug.replace("-", " ").title()
             text = f"---\nsummary: Spec and tickets for {title}\n---\n\n# {title}\n\n{block}\n"

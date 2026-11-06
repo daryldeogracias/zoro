@@ -7,7 +7,7 @@ Writes <workspace>/.obsidian/{app,graph}.json (only when absent, so the user's o
 Home.md (rebuilt, rewritten only when it changed). Registers the vault with Obsidian only when Obsidian
 is installed and not running (after a backup); otherwise prints the one manual step.
 backfill adds folder-based tags (frontmatter only) and a Related section of wikilinks to logbook entries,
-and rewrites old Zoro-Files paths in logbook/, kept/ and dojo/. Idempotent. Stdlib only.
+rewrites old Zoro-Files paths in logbook/, kept/ and dojo/, and strips the old <!-- toc --> comment markers. Idempotent. Stdlib only.
 """
 import json
 import os
@@ -18,6 +18,7 @@ import sys
 import time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from toc import strip_markers  # noqa: E402
 from workspace import LEGACY, WS, vault_name  # noqa: E402
 
 HOME = os.path.expanduser("~")
@@ -171,7 +172,7 @@ def backfill():
                     old = f.read()
             except (OSError, UnicodeDecodeError):
                 continue
-            text = old
+            text = strip_markers(old)
             top = rel.split(os.sep)[0]
             if top in ("logbook", "kept", "dojo"):
                 text = text.replace(LEGACY + "/", WS.rstrip("/") + "/").replace(
