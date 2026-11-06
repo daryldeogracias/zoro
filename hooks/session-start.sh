@@ -23,6 +23,12 @@ Zoro workspace: $WS
 - When an instruction is unclear (goal, scope, or how to tell it is done), ask 1 to 3 short questions before acting.
 EOF
 
+if [ "$(python3 "$ROOT/lib/workspace.py" mode)" = "command" ]; then
+  echo "- Whenever you name a workspace file to the user, show it with: python3 $ROOT/lib/workspace.py link <path> (a markdown link plus an open command to paste, because this terminal may not open links on click). Never show a bare path."
+else
+  echo "- Whenever you name a workspace file to the user, show it as a link: python3 $ROOT/lib/workspace.py link <path>. Never show a bare path."
+fi
+
 open_specs=$(CLAUDE_WORKSPACE="$WS" python3 "$ROOT/skills/kata/scripts/specs.py" status 2>/dev/null | head -5)
 if [ -n "$open_specs" ]; then
   echo "- Specs in progress:"

@@ -17,10 +17,10 @@ dojo/<domain>/<topic>.md       frontmatter `summary: <one line>`, then content
 Every file stays at or under 120 lines. Domain and topic names are kebab-case (`gmv-campaigns`, `brand-voice`).
 
 1. Pick the domain from `dojo/README.md`. When none fits, create `dojo/<domain>/`; ask the user only if two domains are plausible.
-2. Read the domain's README table. Extend the matching topic file, or create a new `<topic>.md` that starts with `summary: <one line>` in frontmatter.
+2. Read the domain's README table. Extend the matching topic file, or create a new `<topic>.md` that starts with `summary: <one line>` in frontmatter. Link related topics as `[[dojo/<domain>/<topic>|<topic>]]` so the Obsidian graph shows the connection. Tags are added by the reindex script.
 3. Write short facts: who, what, when, why. Link to `digests/` files instead of copying them.
 4. Run `python3 scripts/reindex.py` from this skill's base directory. It rebuilds every table and prints `OVER` and `MISSING` lines for anything to fix.
 5. Split each `OVER` file at a heading boundary into two files, each with its own `summary:`. Fill each `MISSING` item. Rerun step 4.
-6. Finish when reindex prints no `OVER` or `MISSING` lines. Print the paths you wrote.
+6. Finish when reindex prints no `OVER` or `MISSING` lines. Show each file you wrote as a link: run `python3 ../../lib/workspace.py link <path> ...` from this skill's base directory and paste its output.
 
 Close with one line: "💪 Trained. The dojo remembers."

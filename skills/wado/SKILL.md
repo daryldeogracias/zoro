@@ -11,6 +11,6 @@ Workspace: the path in the session start notice (default `~/Desktop/roronoa/`)
 1. Identify the items: the ones the user named, otherwise the newest `scratch/` folder.
 2. Move them to `kept/<topic>/`, choosing a topic folder name from the content (e.g. `gmv-campaign`).
 3. In the newest logbook entry, change each moved file's path and mark it `kept`.
-4. Finish when every item sits under `kept/` and `grep -r "<old path>" logbook/` returns nothing. Print the new paths.
+4. Finish when every item sits under `kept/` and `grep -r "<old path>" logbook/` returns nothing. Show the new paths as links: run `python3 ../../lib/workspace.py link <path> ...` from this skill's base directory and paste its output.
 
 Close with one line: "🔒 Wado stays with me. Kept."

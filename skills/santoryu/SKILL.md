@@ -12,7 +12,7 @@ Workspace: the path in the session start notice (default `~/Desktop/roronoa/`)
 2. `UNCHANGED`: read only the `## Summary` block at the top of the digest.
    `NEW` or `UPDATED`: read the digest, then replace the `<!-- summary pending -->` marker with a summary of at most 150 words: what the document is, the key facts and numbers, and a list of its section headings.
 3. Answer from the summary. For detail, read the matching section of the digest by heading.
-4. Finish when the digest has a written summary and the user's question is answered from it.
+4. Finish when the digest has a written summary and the user's question is answered from it. The script prints the digest link; show it to the user.
 
 The script handles docx, pptx, xlsx, pdf (needs `pdftotext`) and plain text. If `pdftotext` is missing, tell the user to run `brew install poppler`.
 

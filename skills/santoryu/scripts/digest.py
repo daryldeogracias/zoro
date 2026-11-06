@@ -16,7 +16,7 @@ import zipfile
 import xml.etree.ElementTree as ET
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "lib"))
-from workspace import WS  # noqa: E402
+from workspace import WS, link_line  # noqa: E402
 
 PENDING = "<!-- summary pending -->"
 W = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
@@ -148,6 +148,7 @@ def main():
             head = f.read(600)
         if f"sha256: {sha}" in head:
             print(f"UNCHANGED  {out}")
+            print(link_line(out))
             return
         status = "UPDATED"
 
@@ -162,13 +163,14 @@ def main():
         sys.exit(f"Unsupported file type: {ext}")
 
     doc = (
-        f"---\nsource: {src}\nsha256: {sha}\n"
+        f"---\ntags: [digest]\nsource: {src}\nsha256: {sha}\n"
         f"digested: {datetime.date.today().isoformat()}\n---\n\n"
         f"# {stem}\n\n## Summary\n\n{PENDING}\n\n## Full text\n\n{text}\n"
     )
     with open(out, "w", encoding="utf-8") as f:
         f.write(doc)
     print(f"{status}  {out}  ~{len(doc) // 4} tokens")
+    print(link_line(out))
 
 
 if __name__ == "__main__":

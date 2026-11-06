@@ -20,7 +20,7 @@ import re
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "lib"))
-from workspace import WS  # noqa: E402
+from workspace import WS, link_line  # noqa: E402
 
 SPECS = os.path.join(WS, "specs")
 LIMIT = 120
@@ -124,6 +124,11 @@ def index():
         with open(readme, "w", encoding="utf-8") as f:
             f.write(text)
         check_limit(readme, text)
+    try:
+        import vault
+        vault.backfill()
+    except Exception:
+        pass
     print(f"Reindexed {len(spec_dirs())} spec(s) in {SPECS}")
     for p in problems:
         print(p)
@@ -151,6 +156,7 @@ def set_boxes(slug, ticket, numbers, value):
     after = boxes("\n".join(lines))
     done = sum(1 for _, c, _ in after if c)
     print(f"{matches[0]}: {done}/{len(after)} done")
+    print(link_line(path))
     for _, c, label in after:
         if not c:
             print(f"next: {label}")

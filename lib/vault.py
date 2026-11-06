@@ -2,9 +2,12 @@
 """Make the Zoro workspace an Obsidian vault. Safe to run any number of times.
 
 Usage: vault.py setup [--quiet]
+       vault.py backfill
 Writes <workspace>/.obsidian/{app,graph}.json (only when absent, so the user's own tweaks stay) and
 Home.md (rebuilt, rewritten only when it changed). Registers the vault with Obsidian only when Obsidian
-is installed and not running (after a backup); otherwise prints the one manual step. Stdlib only.
+is installed and not running (after a backup); otherwise prints the one manual step.
+backfill adds folder-based tags (frontmatter only) and a Related section of wikilinks to logbook entries,
+and rewrites old Zoro-Files paths in logbook/, kept/ and dojo/. Idempotent. Stdlib only.
 """
 import json
 import os
@@ -15,7 +18,7 @@ import sys
 import time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from workspace import WS, vault_name  # noqa: E402
+from workspace import LEGACY, WS, vault_name  # noqa: E402
 
 HOME = os.path.expanduser("~")
 APP_JSON = {"promptDelete": False, "userIgnoreFilters": [".DS_Store"]}
@@ -108,11 +111,92 @@ def register():
     return "done"
 
 
+FM = re.compile(r"---\n(.*?)\n---\n?", re.S)
+
+
+def tags_for(rel):
+    parts = rel.split(os.sep)
+    top = parts[0]
+    if len(parts) < 2:
+        return None
+    if top == "logbook":
+        return ["logbook"]
+    if top == "digests":
+        return ["digest"]
+    if top == "kept":
+        return ["kept"]
+    if top == "dojo" and len(parts) > 2:
+        return (["adr"] if parts[-1].startswith("adr-") else []) + ["dojo", parts[1]]
+    if top == "dojo":
+        return ["dojo"]
+    if top == "specs" and len(parts) > 2:
+        return ["spec", parts[1]]
+    return None
+
+
+def add_tags(text, tags):
+    line = "tags: [" + ", ".join(tags) + "]"
+    m = FM.match(text)
+    if m:
+        if re.search(r"^tags:", m.group(1), re.M):
+            return text
+        return "---\n" + m.group(1) + "\n" + line + "\n---\n" + text[m.end():]
+    return "---\n" + line + "\n---\n\n" + text
+
+
+def related(text):
+    """Wikilinks for specs and dojo domains a logbook entry mentions but does not link yet."""
+    found = []
+    for slug in sorted(set(re.findall(r"specs/([a-z0-9][a-z0-9-]*)", text))):
+        if os.path.isfile(os.path.join(WS, "specs", slug, "README.md")) and "[[specs/%s/" % slug not in text:
+            found.append("- [[specs/%s/README|%s]]" % (slug, slug))
+    for dom in sorted(set(re.findall(r"dojo/([a-z0-9][a-z0-9-]*)", text))):
+        if os.path.isfile(os.path.join(WS, "dojo", dom, "README.md")) and "[[dojo/%s/" % dom not in text:
+            found.append("- [[dojo/%s/README|%s]]" % (dom, dom))
+    return found
+
+
+def backfill():
+    """Returns the number of files changed."""
+    changed = 0
+    for root, dirs, files in os.walk(WS):
+        dirs[:] = [d for d in dirs if not d.startswith(".") and d != "scratch"]
+        for name in files:
+            if not name.endswith(".md"):
+                continue
+            path = os.path.join(root, name)
+            rel = os.path.relpath(path, WS)
+            try:
+                with open(path, encoding="utf-8") as f:
+                    old = f.read()
+            except (OSError, UnicodeDecodeError):
+                continue
+            text = old
+            top = rel.split(os.sep)[0]
+            if top in ("logbook", "kept", "dojo"):
+                text = text.replace(LEGACY + "/", WS.rstrip("/") + "/").replace(
+                    "~/Desktop/Zoro-Files/", "~/Desktop/roronoa/")
+            tags = tags_for(rel)
+            if tags:
+                text = add_tags(text, tags)
+            if top == "logbook":
+                rel_links = related(text)
+                if rel_links:
+                    head = "" if "## Related" in text else "\n## Related\n"
+                    text = text.rstrip("\n") + "\n" + head + "\n".join(rel_links) + "\n"
+            if text != old:
+                with open(path, "w", encoding="utf-8") as f:
+                    f.write(text)
+                changed += 1
+    return changed
+
+
 def setup(quiet):
     obs = os.path.join(WS, ".obsidian")
     changed = [write_if_absent(os.path.join(obs, "app.json"), APP_JSON),
                write_if_absent(os.path.join(obs, "graph.json"), GRAPH_JSON),
-               write_if_changed(os.path.join(WS, "Home.md"), home_md())]
+               write_if_changed(os.path.join(WS, "Home.md"), home_md()),
+               backfill() > 0]
     notes = []
     if not obsidian_installed():
         notes.append("Obsidian is not installed. Download it free from https://obsidian.md, then open the folder %s "
@@ -133,10 +217,13 @@ def setup(quiet):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2 or sys.argv[1] != "setup":
+    if len(sys.argv) < 2 or sys.argv[1] not in ("setup", "backfill"):
         print(__doc__)
         sys.exit(2)
     try:
-        setup("--quiet" in sys.argv)
+        if sys.argv[1] == "backfill":
+            print("Backfilled %d file(s)." % backfill())
+        else:
+            setup("--quiet" in sys.argv)
     except Exception as e:
         print("Zoro: Obsidian setup skipped (%s)." % e, file=sys.stderr)

@@ -15,19 +15,21 @@ ADRs live in the dojo: `dojo/<domain>/adr-NNN-<slug>.md`, at most 40 lines each,
 3. Number it: count the existing `adr-*.md` files in the domain and add 1, as three digits.
 4. Write the file from the template below. When it replaces an earlier ADR, change that ADR's `Status:` line to `superseded by ADR-NNN`.
 5. Run `python3 ../train/scripts/reindex.py` from this skill's base directory. Fix each `OVER` or `MISSING` line and rerun.
-6. Finish when reindex prints no problems and you have printed the ADR path.
+6. Finish when reindex prints no problems and you have shown the ADR as a link: run `python3 ../../lib/workspace.py link <path>` from this skill's base directory and paste its output.
 
 ## Template
 
 ```markdown
 ---
 summary: ADR-NNN <the decision in one line> (accepted)
+tags: [adr, <domain>]
 ---
 
 # ADR-NNN: <title>
 
 Status: accepted
 Date: <YYYY-MM-DD>
+Domain: [[dojo/<domain>/README|<domain>]]
 
 ## Context
 <why a decision was needed, 2-4 lines>
@@ -40,6 +42,8 @@ Date: <YYYY-MM-DD>
 
 ## Consequences
 - <what gets easier or harder>
+
+Related: [[dojo/<domain>/<topic>|<topic>]] (link each topic file the decision touches)
 ```
 
 Close with one line: "📜 Oath sworn. ADR-NNN is in the dojo."

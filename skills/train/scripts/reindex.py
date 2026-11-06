@@ -104,6 +104,11 @@ def main():
     )
     check_limit(root, read(root))
 
+    try:
+        import vault
+        vault.backfill()
+    except Exception:
+        pass
     print(f"Reindexed {len(domains)} domain(s) in {DOJO}")
     for p in problems:
         print(p)

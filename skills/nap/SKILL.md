@@ -13,7 +13,7 @@ Workspace: the path in the session start notice (default `~/Desktop/roronoa/`)
 3. When this chat touched a spec, run `python3 ../kata/scripts/specs.py status` from this skill's base directory and put its line under `## Checklist`.
 4. List the files you created this chat. Move any that sit outside `scratch/` into `scratch/<date>-<slug>/`.
 5. Ask: "Any of these worth keeping?" Hand the answer to the `wado` skill.
-6. Finish when the entry exists and you have printed its full path, then say: "😴 Napping. Start a fresh chat any time and run /lost."
+6. Finish when the entry exists and you have shown its link, Show each file as a link: run `python3 ../../lib/workspace.py link <path> ...` from this skill's base directory and paste its output. Then say: "😴 Napping. Start a fresh chat any time and run /lost."
 
 ## Template
 
@@ -22,25 +22,26 @@ Workspace: the path in the session start notice (default `~/Desktop/roronoa/`)
 title: <what this session was about, 6 words max>
 date: <YYYY-MM-DD>
 status: open | done
+tags: [logbook, <project-slug>]
 ---
 
 ## Where we got to
 <2-4 lines>
 
 ## Decisions
-- <decision, and why in a few words> (ADR-NNN when recorded)
+- <decision, and why in a few words> ([[dojo/<domain>/adr-NNN-<slug>|ADR-NNN]] when recorded)
 
 ## Checklist
-- specs/<slug>: <done>/<total> items, next <ticket>
+- [[specs/<slug>/README|<slug>]]: <done>/<total> items, next [[specs/<slug>/<ticket>|<ticket>]]
 
 ## Open questions
 - <question>
 
 ## Files
-- <full path> : <what it is> (scratch | kept | digest)
+- [[<path inside the workspace, no .md>]] : <what it is> (scratch | kept | digest)
 
 ## Next step
 <one line>
 ```
 
-Write for a reader who has never seen this chat. Name people, files and numbers explicitly.
+Use `[[wikilinks]]` for workspace files so the Obsidian graph connects them. Write for a reader who has never seen this chat. Name people, files and numbers explicitly.
