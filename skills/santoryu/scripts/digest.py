@@ -15,7 +15,9 @@ import sys
 import zipfile
 import xml.etree.ElementTree as ET
 
-WS = os.environ.get("CLAUDE_WORKSPACE", os.path.expanduser("~/Desktop/Zoro-Files"))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "lib"))
+from workspace import WS  # noqa: E402
+
 PENDING = "<!-- summary pending -->"
 W = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
 A = "{http://schemas.openxmlformats.org/drawingml/2006/main}"

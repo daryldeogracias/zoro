@@ -6,7 +6,7 @@ model: sonnet
 
 Zoro is always lost. Read the logbook and point him at the next job.
 
-Workspace: the path in the session start notice (default `~/Desktop/Zoro-Files/`)
+Workspace: the path in the session start notice (default `~/Desktop/roronoa/`)
 
 1. List `logbook/` newest first. If the user named a topic, match it against entry titles. Otherwise show the 5 newest as `date, title, status` and ask which.
 2. Open the chosen entry only. Open files from its `Files` section when the next ask needs them, preferring `digests/` over originals.

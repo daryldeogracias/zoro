@@ -14,7 +14,9 @@ import os
 import re
 import sys
 
-WS = os.environ.get("CLAUDE_WORKSPACE", os.path.expanduser("~/Desktop/Zoro-Files"))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "lib"))
+from workspace import WS  # noqa: E402
+
 DOJO = os.path.join(WS, "dojo")
 LIMIT = 120
 START, END = "<!-- toc:start -->", "<!-- toc:end -->"

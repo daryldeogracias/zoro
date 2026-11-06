@@ -6,7 +6,7 @@ model: sonnet
 
 Zoro trains in the dojo every day. Knowledge worth keeping goes there, small and indexed, so any chat can find it without reading everything.
 
-Workspace: the path in the session start notice (default `~/Desktop/Zoro-Files/dojo/`)
+Workspace: the path in the session start notice (default `~/Desktop/roronoa/dojo/`)
 
 ```
 dojo/README.md                 table of domains

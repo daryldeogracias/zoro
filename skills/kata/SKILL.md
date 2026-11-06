@@ -9,7 +9,7 @@ A kata is a practised sequence: ask, plan, approve, split into tickets. Each tic
 
 This is the one planning pass, on Opus, at the start of the work. Only the user starts it by typing /kata. Once the spec and tickets exist, work continues with /lost and /tick, and replanning happens only when the user asks for it.
 
-Workspace: the path in the session start notice (default `~/Desktop/Zoro-Files/`)
+Workspace: the path in the session start notice (default `~/Desktop/roronoa/`)
 
 ```
 specs/<slug>/README.md       progress + table of files (rebuilt by script)

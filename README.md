@@ -2,7 +2,7 @@
 
 Never lose the thread, never re-read the same brief. A Claude Code plugin for people who hit usage limits because their chats grow huge and they re-attach the same documents.
 
-Everything lives in `~/Desktop/Zoro-Files/`.
+Everything lives in `~/Desktop/roronoa/`.
 
 | Command | Zoro | What it does |
 |---|---|---|

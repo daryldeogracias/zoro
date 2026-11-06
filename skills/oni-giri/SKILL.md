@@ -6,7 +6,7 @@ model: sonnet
 
 Oni Giri cuts the scratch pile down to size. The logbook, `digests/` and `kept/` stay untouched.
 
-Workspace: the path in the session start notice (default `~/Desktop/Zoro-Files/`)
+Workspace: the path in the session start notice (default `~/Desktop/roronoa/`)
 
 1. List `scratch/` entries older than 14 days (`find <workspace>/scratch -mindepth 1 -maxdepth 1 -mtime +14`) with sizes. If the user asked for everything, list all of `scratch/`.
 2. Show the list and ask for a yes. Wait for it.

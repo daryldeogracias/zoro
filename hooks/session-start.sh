@@ -2,7 +2,9 @@
 # Zoro's orders, read at every sailing. Stdout becomes session context.
 # Keep this short: every line is paid for on every chat.
 
-WS="${CLAUDE_WORKSPACE:-$HOME/Desktop/Zoro-Files}"
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+python3 "$ROOT/lib/migrate.py"
+WS="${CLAUDE_WORKSPACE:-$HOME/Desktop/roronoa}"
 mkdir -p "$WS"/{logbook,digests,scratch,kept,dojo}
 
 recent=$(ls -1t "$WS/logbook" 2>/dev/null | head -5)
@@ -20,7 +22,6 @@ Zoro workspace: $WS
 - When an instruction is unclear (goal, scope, or how to tell it is done), ask 1 to 3 short questions before acting.
 EOF
 
-ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 open_specs=$(CLAUDE_WORKSPACE="$WS" python3 "$ROOT/skills/kata/scripts/specs.py" status 2>/dev/null | head -5)
 if [ -n "$open_specs" ]; then
   echo "- Specs in progress:"

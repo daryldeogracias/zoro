@@ -6,7 +6,7 @@ model: sonnet
 
 Zoro naps anywhere. Log the voyage first, then the user can leave this chat safely.
 
-Workspace: the path in the session start notice (default `~/Desktop/Zoro-Files/`)
+Workspace: the path in the session start notice (default `~/Desktop/roronoa/`)
 
 1. Scan the chat for decisions. Each one where two or more options were weighed, or the user chose, goes to the `oath` skill as an ADR. Smaller decisions stay as one-line bullets.
 2. Get the timestamp with `date +%Y-%m-%d-%H%M`. Write `logbook/<timestamp>-<slug>.md` using the template below, under 40 lines. Link each ADR by its ID.

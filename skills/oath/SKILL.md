@@ -6,7 +6,7 @@ model: sonnet
 
 An oath is a decision sworn once, with its reason, so nobody re-argues it in a new chat.
 
-Workspace: the path in the session start notice (default `~/Desktop/Zoro-Files/`)
+Workspace: the path in the session start notice (default `~/Desktop/roronoa/`)
 
 ADRs live in the dojo: `dojo/<domain>/adr-NNN-<slug>.md`, at most 40 lines each, so the same tables of contents and per-prompt matching find them.
 

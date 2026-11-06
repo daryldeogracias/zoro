@@ -6,7 +6,7 @@ model: sonnet
 
 Tick what is verified done, so the checklist always matches reality and a fresh chat knows where the work stands.
 
-Workspace: the path in the session start notice (default `~/Desktop/Zoro-Files/`)
+Workspace: the path in the session start notice (default `~/Desktop/roronoa/`)
 
 1. Find the spec and ticket: read `specs/<slug>/README.md`, then the ticket. When the spec, ticket or item is ambiguous, ask which one and wait.
 2. Confirm the item is done: the file exists, the test passed, or the user said so. Tick only confirmed items.

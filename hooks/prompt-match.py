@@ -9,6 +9,9 @@ import os
 import re
 import sys
 
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "lib"))
+from workspace import WS  # noqa: E402
+
 STOP = set("""about above after again also another because before being between could does doing from have
 having here into just like make more most much need only other over please should some such than that their
 them then there these they this those through under want what when where which while will with would your
@@ -40,7 +43,7 @@ def main():
         prompt = json.load(sys.stdin).get("prompt", "")
     except Exception:
         return
-    ws = os.environ.get("CLAUDE_WORKSPACE", os.path.expanduser("~/Desktop/Zoro-Files"))
+    ws = WS
     dojo = os.path.join(ws, "dojo")
     # A long prompt with a build verb is probably a real task: nudge towards planning first.
     if len(prompt) >= 80 and BUILD.search(prompt) and not prompt.lstrip().startswith("/"):
