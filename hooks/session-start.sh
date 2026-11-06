@@ -6,6 +6,7 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 python3 "$ROOT/lib/migrate.py"
 WS="${CLAUDE_WORKSPACE:-$HOME/Desktop/roronoa}"
 mkdir -p "$WS"/{logbook,digests,scratch,kept,dojo}
+[ -d "$WS/.obsidian" ] || CLAUDE_WORKSPACE="$WS" python3 "$ROOT/lib/vault.py" setup --quiet
 
 recent=$(ls -1t "$WS/logbook" 2>/dev/null | head -5)
 stale=$(find "$WS/scratch" -mindepth 1 -maxdepth 1 -mtime +14 2>/dev/null | wc -l | tr -d ' ')
