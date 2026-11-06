@@ -1,6 +1,8 @@
 {
   "name": "zoro",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Never lose the thread, never re-read the same brief. A logbook, document digests and a keep-or-bin workspace so non-devs can start fresh chats without losing context. Roronoa Zoro themed.",
-  "author": { "name": "daryldeogracias" }
+  "author": {
+    "name": "daryldeogracias"
+  }
 }

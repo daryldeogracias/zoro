@@ -24,7 +24,31 @@ Everything lives in `~/Desktop/roronoa/`.
 - `scratch/` everything Claude creates, throwaway by default
 - `kept/` what you chose to keep
 - `specs/` plans and tickets from `/kata`: `specs/<name>/README.md` (progress) plus `spec.md` and `t01-...md` tickets
+- `Home.md`, `.obsidian/` the Obsidian vault hub and settings
 - `dojo/` durable knowledge (and ADRs from `/oath`): `dojo/<domain>/README.md` (table of contents) plus topic files, each at most 120 lines. A script rebuilds the tables and flags files to split.
+
+## Obsidian: see the workspace as a map
+
+The workspace is an [Obsidian](https://obsidian.md) vault. Open it to browse every logbook entry, spec, ADR and
+dojo note, and use the graph view to see how they connect.
+
+- On the first session after updating, Zoro writes the vault settings and a `Home.md` hub (start there).
+  Obsidian must be installed (free). If it is open or not installed, Zoro prints the one step to take:
+  *Open folder as vault* and pick `~/Desktop/roronoa`.
+- Every file Zoro names comes with an `obsidian://` link. In terminals that open links on click (iTerm2,
+  VS Code, WezTerm, Ghostty, kitty, Alacritty) just click it. In others (Hyper, Terminal.app) Zoro also prints
+  an `open "obsidian://..."` line to paste. Force a mode with `ZORO_LINKS=link` or `ZORO_LINKS=command`.
+- Files carry `tags:` (`logbook`, `dojo`, `<domain>`, `adr`, `spec`, `<slug>`, `digest`, `kept`) and `[[wikilinks]]`
+  between logbook entries, specs, tickets, ADRs and dojo topics. `/train`, `/oath` and the spec scripts add missing
+  tags automatically; `python3 lib/vault.py backfill` does it on demand.
+
+## Upgrading from 0.4.x
+
+`/plugin update zoro`, then start a new session. If `~/Desktop/Zoro-Files` exists and `~/Desktop/roronoa` does
+not, Zoro moves it, repoints any `~/.claude/projects/*/memory` links that pointed into it and tells you. If both
+exist, nothing is touched and Zoro warns you. Set `CLAUDE_WORKSPACE` to use another folder (no migration then).
+Anything of yours that mentions `~/Desktop/Zoro-Files` (for example a line in `~/.claude/CLAUDE.md`) needs the
+new path by hand.
 
 ## Install (local test)
 
